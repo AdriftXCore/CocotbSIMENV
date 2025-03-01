@@ -1,6 +1,7 @@
-# This file is public domain, it can be freely copied without restrictions.
-# SPDX-License-Identifier: CC0-1.0
-
+'''
+Author:zhanghx(https://github.com/AdriftXCore)
+date:2025-03-01 23:02:10
+'''
 import random
 
 import cocotb
