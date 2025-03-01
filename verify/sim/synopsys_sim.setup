@@ -1,0 +1,2 @@
+OTHERS=/opt/synopsys/vcs_simlib/synopsys_sim.setup
+xil_defaultlib:vcs_lib/xil_defaultlib
