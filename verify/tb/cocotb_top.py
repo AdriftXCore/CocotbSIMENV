@@ -45,13 +45,14 @@ async def reset_logic(dut, sync=True, cycles=1):
 async def dff_simple_test(dut):
     # clock
     await cocotb.start(generate_clock(dut,20,"us",0))
+
+    reset_task = cocotb.start_soon(reset_logic(dut,False,10))
     
     # Set initial input value to prevent it from floating
     dut.d.value = 0  
 
     #reset
-    # await cocotb.start(reset_logic(dut,True,1))
-    await reset_logic(dut,False,10)
+    await reset_task
 
     # Synchronize with the clock. This will regisiter the initial `d` value
     await RisingEdge(dut.clk)
