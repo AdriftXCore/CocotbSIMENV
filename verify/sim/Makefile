@@ -37,7 +37,7 @@ allv: all verdi
 
 # 定义clean操作
 clean_all:
-				rm -rf  *.key *.vpd DVEfiles coverage *.vdb *.vcd *.xml novas* verdiLog vfastLog *.mr *.pvl *.syn *.svf ./filelist.f simv.daidir *.log *.fsdb  simv vcs_lib 64 sim_build $(PWD)/../tb/__pycache__
+				rm -rf  *.key *.vpd DVEfiles coverage *.vdb *.vcd *.xml novas* verdiLog vfastLog *.mr *.pvl *.syn *.svf ./filelist.f simv.daidir *.log *.fsdb *.fsdb.*  simv vcs_lib 64 sim_build $(PWD)/../tb/__pycache__
 
 
 # 定义mklist操作
