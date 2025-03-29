@@ -16,6 +16,8 @@ TOPLEVEL_LANG ?= verilog
 VERILOG_SOURCES += $(tb_files)
 VERILOG_SOURCES += $(shell cat ./filelist.f)
 
+COCOTB_ENABLE_PROFILING=1
+
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
 TOPLEVEL = $(tc)
 
@@ -31,7 +33,7 @@ include $(shell cocotb-config --makefiles)/Makefile.sim
 
 # 默认目标：生成文件列表后启动仿真
 all: clean_all mklist compile elaborate run
-				$(MAKE) sim
+				# $(MAKE) sim
 
 allv: all verdi
 
@@ -39,12 +41,11 @@ allv: all verdi
 clean_all:
 				rm -rf  *.key *.vpd DVEfiles coverage *.vdb *.vcd *.xml novas* verdiLog vfastLog *.mr *.pvl *.syn *.svf ./filelist.f simv.daidir *.log *.fsdb *.fsdb.*  simv vcs_lib 64 sim_build $(PWD)/../tb/__pycache__
 
-
 # 定义mklist操作
 mklist:
 				rm -rf ./filelist.f
 				touch ./filelist.f
-				find  $(rtl_list) -type f \( -name "*.v" -o -name "*.sv" \) >> filelist.f
+				find  $(rtl_list) -type f \( -name "*.v" -o -name "*.v.e" -o -name "*.sv.e" -o -name "*.sv" \) >> filelist.f
 
 compile:
 				vlogan \
@@ -79,5 +80,5 @@ verdi:
 				+v2k \
 				$(tb_files) \
 				-F ./filelist.f \
-				-ssf *.fsdb \
+				-ssf tb_top.fsdb \
 				-nologo &
