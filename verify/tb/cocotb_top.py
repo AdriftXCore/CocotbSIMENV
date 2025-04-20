@@ -71,26 +71,44 @@ async def dff_simple_test(dut):
 
 
 import os,shutil
+import pytest
 from pathlib import Path
 import re
 import cocotb_test.simulator
 def safe_test_name(name):
     return re.sub(r'[^A-Za-z0-9_]', '_', name).rstrip('_')
+def verilog_literal_to_hex(verilog_str):
+    match = re.match(r"\d+'h([0-9a-fA-F]+)", verilog_str)
+    if match:
+        hex_str = match.group(1)
+        return int(hex_str, 16)
+    else:
+        raise ValueError(f"Invalid Verilog literal: {verilog_str}")
 
-def test_run(request):
+ctb = "cocotb_top"
+tc = "tb_top"
+filelist = '../sim/filelist.f'
+tests_dir = '../sim/'
+include_list = '../../design/incl'
+tb_list = '../../verify/tb'
+rtl = '../../design/rtl'
+
+@pytest.fixture(scope="session", autouse=True)
+def clean_sim_build():
+    sim_build_path = Path(f'{tests_dir}/sim_build').resolve()
+    if os.path.exists(sim_build_path):
+        shutil.rmtree(sim_build_path)
+
+# @pytest.mark.parametrize("a", [0,1,2])
+@pytest.mark.parametrize("a", [0])
+def test_run(request,a):
     # os.environ["SIM"] = "vcs"
     os.environ["WAVES"] = "1"
 
-    ctb = "cocotb_top"
-    tc = "tb_top"
-    filelist = '../sim/filelist.f'
-    tests_dir = '../sim/'
-    include_list = '../../design/incl'
-    tb_list = '../../verify/tb'
-    rtl = '../../design/rtl'
+    parameters = {}
+    parameters['A'] = a
 
     filelist_path = Path(filelist).resolve()
-    sim_build_path = Path(f'{tests_dir}/sim_build').resolve()
     simulation_path  = Path(f'{tests_dir}/simulate.do').resolve()
     tb_files = Path(os.path.join(tb_list, tc) + ".sv").resolve()
     dut = tc
@@ -103,8 +121,6 @@ def test_run(request):
     verilog_sources  = []
     if os.path.exists(filelist_path):
         os.remove(filelist_path)
-    if os.path.exists(sim_build_path):
-        shutil.rmtree(sim_build_path)
     rtl_path = Path(rtl)
     with open(filelist_path, 'w') as f:
         for filepath in rtl_path.rglob('*'):
@@ -118,9 +134,8 @@ def test_run(request):
             if rel_path:
                 verilog_sources.append(rel_path)
 
-    parameters = {}
-
     verilog_sources.append(str(Path(tc + '.sv').resolve()))
+    extra_env = {f'PARAM_{k}': str(v) for k, v in parameters.items()}
     sim_build = os.path.join(tests_dir, "sim_build",safe_test_name(request.node.name))
 
     if(simulator == "vcs"):
@@ -183,6 +198,7 @@ def test_run(request):
             sim_args=sim_args,
             parameters=parameters,
             sim_build=sim_build,
+            extra_env=extra_env,
             waves=waves
         )
     else:

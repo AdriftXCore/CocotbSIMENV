@@ -1,6 +1,9 @@
 `timescale 1ns/1ns
 
-module tb_top;
+module tb_top#(
+    parameter A = 0,
+    parameter B = 32'h12345678
+);
 
 logic clk, d, rst_n;
 logic q;
@@ -18,5 +21,6 @@ dff u_dff(
         $fsdbDumpvars(0, tb_top,"+all");
     end
 `endif
+
 
 endmodule
