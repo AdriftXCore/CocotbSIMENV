@@ -144,7 +144,7 @@ def test_run(request):
 \t+v2k \\
 \t{str(tb_files)} \\
 \t-F {str(filelist_path)} \\
-\t-ssf tb_top.fsdb \\
+\t-ssf {tc}.fsdb \\
 \t-nologo &
                 """)
         compile_args.extend([
@@ -197,7 +197,7 @@ def test_run(request):
 \t+v2k \\
 \t{str(tb_files)} \\
 \t-F {str(filelist_path)} \\
-\t-ssf tb_top.vcd \\
+\t-ssf {tc}.vcd \\
 \t-nologo &
 
 gtk:
