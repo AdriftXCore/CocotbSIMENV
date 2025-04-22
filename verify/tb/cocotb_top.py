@@ -109,6 +109,7 @@ def test_run(request,a):
     parameters['A'] = a
 
     filelist_path = Path(filelist).resolve()
+    include_path = Path(include_list).resolve()
     simulation_path  = Path(f'{tests_dir}/simulate.do').resolve()
     tb_files = Path(os.path.join(tb_list, tc) + ".sv").resolve()
     dut = tc
@@ -157,6 +158,7 @@ def test_run(request,a):
 \tverdi \\
 \t-sv \\
 \t+v2k \\
+\t+incdir+{include_path} \\
 \t{str(tb_files)} \\
 \t-F {str(filelist_path)} \\
 \t-ssf {tc}.fsdb \\
@@ -211,6 +213,7 @@ def test_run(request,a):
 \tverdi \\
 \t-sv \\
 \t+v2k \\
+\t+incdir+{include_path} \\
 \t{str(tb_files)} \\
 \t-F {str(filelist_path)} \\
 \t-ssf {tc}.vcd \\
