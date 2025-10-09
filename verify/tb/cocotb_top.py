@@ -86,4 +86,4 @@ def test_run(request, a):
     simulator = os.environ.get("SIM", "")
     waves = os.environ.get("WAVES", "")
 
-    adcore_test_run(request,wave=waves,sim=simulator,parameters=parameters)
+    adcore_test_run(request,ctb="cocotb_top",tc="tb_top",wave=waves,sim=simulator,parameters=parameters)
