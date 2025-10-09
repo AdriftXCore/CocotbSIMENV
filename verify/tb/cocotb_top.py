@@ -106,7 +106,7 @@ def test_run(request,a):
     os.environ["WAVES"] = "1"
 
     parameters = {}
-    parameters['A'] = a
+    # parameters['A'] = a
 
     filelist_path = Path(filelist).resolve()
     include_path = Path(include_list).resolve()
@@ -168,7 +168,7 @@ def test_run(request,a):
             "-full64",
             "+v2k",
             "-work xil_defaultlib",
-            f"+incdir+${include_list}",
+            f"+incdir+{include_path}",
             "-sverilog",
             "+define+SIMULATION_EN",
             "-debug_access+all+fsdb",
@@ -184,7 +184,7 @@ def test_run(request,a):
             f"-P {verdi_home}/share/PLI/VCS/LINUX64/novas.tab {verdi_home}/share/PLI/VCS/LINUX64/pli.a xil_defaultlib.{tc}",
             "-o simv"
         ])
-        print(compile_args)
+        # print(compile_args)
         sim_args = [
             "-ucli",
             "-licqueue",
@@ -225,6 +225,7 @@ gtk:
         cocotb_test.simulator.run(
             python_search=[tests_dir],
             verilog_sources=verilog_sources,
+            includes=[str(include_path)],
             toplevel=toplevel,
             module=module,
             parameters=parameters,
