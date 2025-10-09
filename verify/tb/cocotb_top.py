@@ -69,6 +69,14 @@ async def dff_simple_test(dut):
     await RisingEdge(dut.clk)  # wait for falling edge/"negedge"
     assert dut.q.value == expected_val, "output q was incorrect on the last cycle"
 
+################################################################### RUN TEST ###################################################################
+ctb = "cocotb_top"
+tc = "tb_top"
+filelist = '../sim/filelist.f'
+tests_dir = '../sim/'
+include_list = '../../design/incl'
+tb_list = '../../verify/tb'
+rtl = '../../design/rtl'
 
 import os,shutil
 import pytest
@@ -85,28 +93,20 @@ def verilog_literal_to_hex(verilog_str):
     else:
         raise ValueError(f"Invalid Verilog literal: {verilog_str}")
 
-ctb = "cocotb_top"
-tc = "tb_top"
-filelist = '../sim/filelist.f'
-tests_dir = '../sim/'
-include_list = '../../design/incl'
-tb_list = '../../verify/tb'
-rtl = '../../design/rtl'
-
 @pytest.fixture(scope="session", autouse=True)
 def clean_sim_build():
     sim_build_path = Path(f'{tests_dir}/sim_build').resolve()
     if os.path.exists(sim_build_path):
         shutil.rmtree(sim_build_path)
 
-# @pytest.mark.parametrize("a", [0,1,2])
-@pytest.mark.parametrize("a", [0])
+@pytest.mark.parametrize("a", [0,1,2])
+# @pytest.mark.parametrize("a", [0])
 def test_run(request,a):
     # os.environ["SIM"] = "vcs"
     os.environ["WAVES"] = "1"
 
     parameters = {}
-    # parameters['A'] = a
+    parameters['A'] = a
 
     filelist_path = Path(filelist).resolve()
     include_path = Path(include_list).resolve()

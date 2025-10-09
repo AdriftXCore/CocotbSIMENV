@@ -15,10 +15,10 @@ dff u_dff(
     .q      (  q    )
 );
 
-initial begin
-    $fsdbDumpfile("tb_top.fsdb");
-    $fsdbDumpvars(0, tb_top,"+all");
-end
+// initial begin
+//     $fsdbDumpfile("tb_top.fsdb");
+//     $fsdbDumpvars(0, tb_top,"+all");
+// end
 
 
 endmodule
