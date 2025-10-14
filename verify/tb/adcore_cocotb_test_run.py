@@ -30,6 +30,7 @@ def adcore_test_run(
     include_list: str = '../../design/incl',
     tb_list:str = '../../verify/tb',
     rtl:str = '../../design/rtl',
+    sim_ip:str = '../ip',
     parameters: dict[str, int] = {}
 ) -> None:
     """
@@ -70,8 +71,13 @@ def adcore_test_run(
     if os.path.exists(filelist_path):
         os.remove(filelist_path)
     rtl_path = Path(rtl)
+    sim_ip_path = Path(sim_ip)
     with open(filelist_path, 'w') as f:
         for filepath in rtl_path.rglob('*'):
+            if filepath.suffix in ['.v', '.sv']:
+                f.write(str(filepath.resolve()) + '\n')
+
+        for filepath in sim_ip_path.rglob('*'):
             if filepath.suffix in ['.v', '.sv']:
                 f.write(str(filepath.resolve()) + '\n')
 
