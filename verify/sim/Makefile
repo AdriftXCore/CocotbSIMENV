@@ -26,7 +26,7 @@ VERILOG_SOURCES += $(shell cat ./filelist.f 2>/dev/null)
 TOPLEVEL = $(tc)
 
 # MODULE is the basename of the Python test file
-export PYTHONPATH := $(PYTHONPATH):$(PWD)/..
+export PYTHONPATH := $(PYTHONPATH):$(PWD)/..:$(PWD)/../tb
 MODULE = tb.$(ctb)
 
 # 指定VCS编译选项
