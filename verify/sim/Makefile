@@ -9,6 +9,7 @@ tc ?= tb_top
 tb_list	= $(abspath ../../verify/tb)
 tb_files = $(tb_list)/$(tc).sv
 rtl_list = $(abspath ../../design/rtl)
+sim_ip_list = $(abspath ../ip)
 commonip_list = $(abspath ../../design/common_ip)
 include_list = $(abspath ../../design/incl)
 
@@ -57,6 +58,7 @@ mklist:
 				rm -rf ./filelist.f
 				touch ./filelist.f
 				find  $(rtl_list) -type f \( -name "*.v" -o -name "*.sv" \) >> filelist.f
+				find  $(sim_ip_list) -type f \( -name "*.v" -o -name "*.sv" \) >> filelist.f
 
 compile:
 				vlogan \
