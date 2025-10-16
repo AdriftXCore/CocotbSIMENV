@@ -50,8 +50,11 @@ allv: all verdi
 
 # 定义clean操作
 clean_all:
-				rm -rf  ./stack.info* *.key *.vpd DVEfiles coverage *.vdb *.vcd *.xml novas* verdiLog vfastLog *.mr *.pvl *.syn *.svf ./filelist.f simv.daidir *.log *.fsdb *.fsdb.*  simv vcs_lib 64 sim_build $(PWD)/../tb/__pycache__ $(PWD)/../tb/.pytest_cache
+				rm -rf  ./stack.info* *.key *.vpd DVEfiles coverage *.vdb *.vcd *.xml novas* verdiLog vfastLog *.mr *.pvl *.syn *.svf ./*.f simv.daidir *.log *.fsdb *.fsdb.*  simv vcs_lib 64 sim_build $(PWD)/../tb/__pycache__ $(PWD)/../tb/.pytest_cache
 
+run_spg: rtllist
+				cd ../spyglass && spyglass -gui
+	
 
 # 定义mklist操作
 mklist:
@@ -60,6 +63,10 @@ mklist:
 				find  $(rtl_list) -type f \( -name "*.v" -o -name "*.sv" \) >> filelist.f
 				find  $(sim_ip_list) -type f \( -name "*.v" -o -name "*.sv" \) >> filelist.f
 
+rtllist:
+				rm -rf ./rtl_filelist.f
+				touch ./rtl_filelist.f
+				find  $(rtl_list) -type f \( -name "*.v" -o -name "*.sv" \) >> rtl_filelist.f
 compile:
 				vlogan \
 				+v2k \
