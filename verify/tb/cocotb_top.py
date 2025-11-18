@@ -6,7 +6,7 @@ import random
 
 import cocotb
 from cocotb.triggers import RisingEdge, Timer
-from adcore_cocotb_test_run import adcore_test_run
+from afx_cocotb_test_run import afx_test_run
 
 async def generate_clock(dut, cycle, u, n):
     """Generate clock pulses."""
@@ -44,9 +44,9 @@ async def reset_logic(dut, sync=True, cycles=1):
 
 @cocotb.test()
 async def dff_simple_test(dut):
+    cycle = int(os.getenv("PARAM_CYCLE", "20"))
     # clock
-    await cocotb.start(generate_clock(dut,20,"us",0))
-
+    await cocotb.start(generate_clock(dut,cycle,"ns",0))
     reset_task = cocotb.start_soon(reset_logic(dut,False,10))
     
     # Set initial input value to prevent it from floating
@@ -74,16 +74,18 @@ async def dff_simple_test(dut):
 import os
 import pytest
 
-@pytest.mark.parametrize("a", [0,1,2])
-# @pytest.mark.parametrize("a", [0])
-def test_run(request, a):
+# @pytest.mark.parametrize("a", [0,1,2,3,4,5,6,7])
+@pytest.mark.parametrize("cycle", [10,30])
+@pytest.mark.parametrize("a", [3,5,7,8,9])
+def test_run(request, a ,cycle):
     
     parameters = {}
     parameters['A'] = a
+    parameters['CYCLE'] = cycle
 
-    os.environ["SIM"] = "icarus"
-    os.environ["WAVES"] = "0"
+    # os.environ["SIM"] = "icarus"
+    # os.environ["WAVES"] = "1"
     simulator = os.environ.get("SIM", "")
     waves = os.environ.get("WAVES", "")
 
-    adcore_test_run(request,ctb="cocotb_top",tc="tb_top",wave=waves,sim=simulator,parameters=parameters)
+    afx_test_run(request,ctb="cocotb_top",tc="tb_top",wave=waves,sim=simulator,parameters=parameters)
