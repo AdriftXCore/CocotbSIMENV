@@ -75,8 +75,8 @@ import os
 import pytest
 
 # @pytest.mark.parametrize("a", [0,1,2,3,4,5,6,7])
-@pytest.mark.parametrize("cycle", [10,30])
-@pytest.mark.parametrize("a", [3,5,7,8,9])
+@pytest.mark.parametrize("cycle", [10,30,40,80])
+@pytest.mark.parametrize("a", [3,5])
 def test_run(request, a ,cycle):
     
     parameters = {}

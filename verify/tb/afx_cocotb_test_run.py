@@ -71,7 +71,6 @@ def afx_test_run(
 
     simulator = sim.lower()
     waves = wave.lower()
-    print(f"==============={filelist_path}===============")
     verilog_sources  = []
     if os.path.exists(filelist_path):
         os.remove(filelist_path)
