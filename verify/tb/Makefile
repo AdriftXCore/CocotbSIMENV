@@ -1,3 +1,16 @@
+# =========================================
+# Author     : zhanghx (https://github.com/AdriftXCore)
+# Date       : 2025-11-20 14:57:10
+# Description: Cocotb test runner Makefile
+#              - Run pytest-based cocotb tests
+#              - Supports parallel execution (runq)
+# Notes      :
+#    * SIM  : simulator to use (default: vcs)
+#    * WAVES: enable waveform dumping (default: 1)
+#    * ctb  : Python test file basename (default: cocotb_top)
+#    * work : simulation working directory (default: ../sim)
+# =========================================
+
 ctb ?= cocotb_top
 work ?= ../sim
 
