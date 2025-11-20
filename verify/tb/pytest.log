@@ -14,4 +14,4 @@ cocotb_top.py::test_run[5-30] [32mPASSED[0m
 cocotb_top.py::test_run[5-40] [32mPASSED[0m
 cocotb_top.py::test_run[5-80] [32mPASSED[0m
 
-[32m============================== [32m[1m8 passed[0m[32m in 5.25s[0m[32m ===============================[0m
+[32m============================== [32m[1m8 passed[0m[32m in 5.62s[0m[32m ===============================[0m

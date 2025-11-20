@@ -25,10 +25,13 @@ dff u_dff(
     .q      (  q    )
 );
 
-// initial begin
-//     $fsdbDumpfile("tb_top.fsdb");
-//     $fsdbDumpvars(0, tb_top,"+all");
-// end
-
+`ifdef VCS_ENABLE
+initial begin
+    if($test$plusargs("WAVES"))begin
+        $fsdbDumpfile("tb_top.fsdb");
+        $fsdbDumpvars(0, tb_top,"+all");
+    end
+end
+`endif
 
 endmodule

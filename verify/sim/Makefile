@@ -1,3 +1,14 @@
+# ==============================================================
+# Author     : Zhanghx (https://github.com/AdriftXCore)
+# Date       : 2025-11-20 14:57
+# Description: Cocotb test Makefile for Nomale/VCS simulation
+#              - Compile and run cocotb tests using VCS
+#              - Supports waveform generation with +WAVES
+#              - Compatible with Vivado glbl and Verdi
+# Notes      : 
+#    * WAVES environment variable enables FSDB waveform dump (default: 1)
+# ==============================================================
+
 verdi_opts = -P $(VERDI_HOME)/share/PLI/VCS/LINUX64/novas.tab $(VERDI_HOME)/share/PLI/VCS/LINUX64/pli.a
 VCS_VIP_SO = $(shell cocotb-config --lib-name-path vpi vcs)
 GLBL_PATH  = /opt/vivado/glbl.v
@@ -17,6 +28,7 @@ include_list = $(abspath ../../design/incl)
 SIM ?= vcs 
 MCCB ?= 1
 TOPLEVEL_LANG ?= verilog
+WAVES ?= 1
 
 # use VHDL_SOURCES for VHDL files
 VERILOG_SOURCES += $(tb_files)
@@ -30,9 +42,9 @@ export PYTHONPATH := $(PYTHONPATH):$(PWD)/..:$(PWD)/../tb
 MODULE = tb.$(ctb)
 
 # 指定VCS编译选项
-EXTRA_ARGS += -full64 -cpp g++-4.8 -cc gcc-4.8 -LDFLAGS "-Wl,--no-as-needed" -debug_access+all +incdir+${include_list} -f $(abspath ./filelist.f)
+EXTRA_ARGS += +define+VCS_ENABLE -full64 -cpp g++-4.8 -cc gcc-4.8 -LDFLAGS "-Wl,--no-as-needed" -debug_access+all +incdir+${include_list} -f $(abspath ./filelist.f)
 
-SIM_ARGS += +vpi -P ./pli.tab -load $(VCS_VIP_SO):cocotbvpi_entry_point
+SIM_ARGS += $(if $(filter 1,$(WAVES)),+WAVES) +vpi -P ./pli.tab -load $(VCS_VIP_SO):cocotbvpi_entry_point
 
 # include cocotb's make rules to take care of the simulator setup
 ifeq ($(MCCB),1)
@@ -77,7 +89,7 @@ compile:
 				+incdir+${include_list} \
 				-sverilog \
 				+define+SIMULATION_EN \
-				+define+WAVES \
+				+define+VCS_ENABLE \
 				$(tb_files) \
 				-F ./filelist.f \
 				-l com.log \
@@ -97,7 +109,7 @@ elaborate:
 				2>&1 | tee -a vlogan.log
 
 run:
-				./simv -ucli -licqueue -l simulate.log -do simulate.do
+				./simv $(if $(filter 1,$(WAVES)),+WAVES) -ucli -licqueue -l simulate.log -do simulate.do
 
 verdi:
 	@read -p "Open Verdi? (y/n): " ans; \

@@ -108,7 +108,8 @@ def afx_test_run(
             os.makedirs(xil_defaultlib_dir)
         xil_defaultlib_dir = Path(xil_defaultlib_dir).resolve()
         if(waves == "1"):
-            compile_args.append("+define+WAVES")
+            compile_args.append("+define+VCS_ENABLE")
+            extra_env["VCS_ENABLE"]="1"
             makefile_path = os.path.join(sim_build, "Makefile")
             os.makedirs(os.path.dirname(makefile_path), exist_ok=True)
             with open(makefile_path, 'w') as makefile:
@@ -144,6 +145,7 @@ def afx_test_run(
         ])
         # print(compile_args)
         sim_args = [
+            "+WAVES",
             "-ucli",
             "-licqueue",
             "-l", "simulate.log",
