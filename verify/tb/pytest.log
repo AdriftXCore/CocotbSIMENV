@@ -9,20 +9,20 @@ created: 4/4 workers
 scheduling tests via LoadScheduling
 
 cocotb_top.py::test_run[3-10] 
-cocotb_top.py::test_run[5-40] 
-cocotb_top.py::test_run[3-40] 
 cocotb_top.py::test_run[5-10] 
-[gw0] [32mPASSED[0m cocotb_top.py::test_run[3-10] 
-cocotb_top.py::test_run[3-30] 
-[gw1] [32mPASSED[0m cocotb_top.py::test_run[3-40] 
+cocotb_top.py::test_run[3-40] 
+cocotb_top.py::test_run[5-40] 
+[gw0] [32mPASSED[0m cocotb_top.py::test_run[3-40] 
 cocotb_top.py::test_run[3-80] 
-[gw2] [32mPASSED[0m cocotb_top.py::test_run[5-10] 
-cocotb_top.py::test_run[5-30] 
+[gw1] [32mPASSED[0m cocotb_top.py::test_run[3-10] 
+cocotb_top.py::test_run[3-30] 
 [gw3] [32mPASSED[0m cocotb_top.py::test_run[5-40] 
 cocotb_top.py::test_run[5-80] 
-[gw0] [32mPASSED[0m cocotb_top.py::test_run[3-30] 
-[gw1] [32mPASSED[0m cocotb_top.py::test_run[3-80] 
+[gw2] [32mPASSED[0m cocotb_top.py::test_run[5-10] 
+cocotb_top.py::test_run[5-30] 
+[gw0] [32mPASSED[0m cocotb_top.py::test_run[3-80] 
 [gw3] [32mPASSED[0m cocotb_top.py::test_run[5-80] 
+[gw1] [32mPASSED[0m cocotb_top.py::test_run[3-30] 
 [gw2] [32mPASSED[0m cocotb_top.py::test_run[5-30] 
 
-[32m============================== [32m[1m8 passed[0m[32m in 19.83s[0m[32m ==============================[0m
+[32m============================== [32m[1m8 passed[0m[32m in 3.45s[0m[32m ===============================[0m

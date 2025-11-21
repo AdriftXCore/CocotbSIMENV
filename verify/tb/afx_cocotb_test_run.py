@@ -33,6 +33,7 @@ def afx_test_run(
     tests_dir: str = '../sim/',
     include_list: str = '../../design/incl',
     tb_list:str = '../../verify/tb',
+    pkg:str = '../../design/pkg',
     rtl:str = '../../design/rtl',
     sim_ip:str = '../ip',
     parameters: dict[str, int] = {}
@@ -74,9 +75,14 @@ def afx_test_run(
     verilog_sources  = []
     if os.path.exists(filelist_path):
         os.remove(filelist_path)
+    pkg_path = Path(pkg)
     rtl_path = Path(rtl)
     sim_ip_path = Path(sim_ip)
     with open(filelist_path, 'w') as f:
+        for filepath in pkg_path.rglob('*'):
+            if filepath.suffix in ['.v', '.sv']:
+                f.write(str(filepath.resolve()) + '\n')
+
         for filepath in rtl_path.rglob('*'):
             if filepath.suffix in ['.v', '.sv']:
                 f.write(str(filepath.resolve()) + '\n')
@@ -84,7 +90,6 @@ def afx_test_run(
         for filepath in sim_ip_path.rglob('*'):
             if filepath.suffix in ['.v', '.sv']:
                 f.write(str(filepath.resolve()) + '\n')
-
 
     with open(filelist_path, 'r') as f:
         for line in f:
@@ -133,8 +138,8 @@ def afx_test_run(
             "-debug_access+all+fsdb",
             "-debug_region+cell+encryp",
             "-kdb",
-            f"{tb_files}",
-            f"-F {filelist_path}",
+            # f"-F {filelist_path}",
+            # f"{tb_files}",
             "-cpp", "g++-4.8",
             "-cc", "gcc-4.8",
             "-LDFLAGS", "-Wl,--no-as-needed",

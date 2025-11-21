@@ -19,6 +19,7 @@ tc ?= tb_top
 
 tb_list	= $(abspath ../../verify/tb)
 tb_files = $(tb_list)/$(tc).sv
+pkg_list = $(abspath ../../design/pkg)
 rtl_list = $(abspath ../../design/rtl)
 sim_ip_list = $(abspath ../ip)
 commonip_list = $(abspath ../../design/common_ip)
@@ -31,8 +32,8 @@ TOPLEVEL_LANG ?= verilog
 WAVES ?= 1
 
 # use VHDL_SOURCES for VHDL files
-VERILOG_SOURCES += $(tb_files)
 VERILOG_SOURCES += $(shell cat ./filelist.f 2>/dev/null)
+VERILOG_SOURCES += $(tb_files)
 
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
 TOPLEVEL = $(tc)
@@ -42,7 +43,8 @@ export PYTHONPATH := $(PYTHONPATH):$(PWD)/..:$(PWD)/../tb
 MODULE = tb.$(ctb)
 
 # 指定VCS编译选项
-EXTRA_ARGS += +define+VCS_ENABLE -full64 -cpp g++-4.8 -cc gcc-4.8 -LDFLAGS "-Wl,--no-as-needed" -debug_access+all +incdir+${include_list} -f $(abspath ./filelist.f)
+# EXTRA_ARGS += +define+VCS_ENABLE -full64 -cpp g++-4.8 -cc gcc-4.8 -LDFLAGS "-Wl,--no-as-needed" -debug_access+all +incdir+${include_list} -f $(abspath ./filelist.f)
+EXTRA_ARGS += +define+VCS_ENABLE -full64 -cpp g++-4.8 -cc gcc-4.8 -LDFLAGS "-Wl,--no-as-needed" -debug_access+all +incdir+${include_list}
 
 SIM_ARGS += $(if $(filter 1,$(WAVES)),+WAVES) +vpi -P ./pli.tab -load $(VCS_VIP_SO):cocotbvpi_entry_point
 
@@ -72,6 +74,7 @@ run_spg: rtllist
 mklist:
 				rm -rf ./filelist.f
 				touch ./filelist.f
+				find  $(pkg_list) -type f \( -name "*.v" -o -name "*.sv" \) >> filelist.f
 				find  $(rtl_list) -type f \( -name "*.v" -o -name "*.sv" \) >> filelist.f
 				find  $(sim_ip_list) -type f \( -name "*.v" -o -name "*.sv" \) >> filelist.f
 
@@ -90,8 +93,8 @@ compile:
 				-sverilog \
 				+define+SIMULATION_EN \
 				+define+VCS_ENABLE \
-				$(tb_files) \
 				-F ./filelist.f \
+				$(tb_files) \
 				-l com.log \
 
 elaborate:
@@ -118,9 +121,9 @@ verdi:
 		verdi \
 			-sv \
 			+v2k \
-			$(tb_files) \
 			+incdir+${include_list} \
 			-F ./filelist.f \
+			$(tb_files) \
 			-ssf $(tc).fsdb \
 			-nologo & \
 	else \
