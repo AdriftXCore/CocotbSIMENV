@@ -188,6 +188,7 @@ gtk:
             includes=[str(include_path)],
             toplevel=toplevel,
             module=module,
+            extra_env=extra_env,
             parameters=parameters,
             sim_build=sim_build,
             waves=waves

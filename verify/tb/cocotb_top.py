@@ -77,14 +77,8 @@ import pytest
 # @pytest.mark.parametrize("a", [0,1,2,3,4,5,6,7])
 @pytest.mark.parametrize("cycle", [10,30,40,80])
 @pytest.mark.parametrize("a", [3,5])
-def test_run(request, a ,cycle):
-    
-    parameters = {}
-    parameters['A'] = a
-    parameters['CYCLE'] = cycle
-
-    # os.environ["SIM"] = "icarus"
-    # os.environ["WAVES"] = "1"
+def test_run(request,cycle,a):
+    parameters = {k.upper(): v for k, v in request.node.callspec.params.items()}
     simulator = os.environ.get("SIM", "")
     waves = os.environ.get("WAVES", "")
 

@@ -3,15 +3,26 @@ platform linux -- Python 3.10.12, pytest-8.3.5, pluggy-1.5.0 -- /usr/bin/python3
 cachedir: .pytest_cache
 rootdir: /home/misaka/edacode/CocotbSIMENV/verify/tb
 plugins: cocotb-test-0.2.6, xdist-3.8.0
-[1mcollecting ... [0mcollected 8 items
+created: 4/4 workers
+4 workers [8 items]
 
-cocotb_top.py::test_run[3-10] [32mPASSED[0m
-cocotb_top.py::test_run[3-30] [32mPASSED[0m
-cocotb_top.py::test_run[3-40] [32mPASSED[0m
-cocotb_top.py::test_run[3-80] [32mPASSED[0m
-cocotb_top.py::test_run[5-10] [32mPASSED[0m
-cocotb_top.py::test_run[5-30] [32mPASSED[0m
-cocotb_top.py::test_run[5-40] [32mPASSED[0m
-cocotb_top.py::test_run[5-80] [32mPASSED[0m
+scheduling tests via LoadScheduling
 
-[32m============================== [32m[1m8 passed[0m[32m in 5.62s[0m[32m ===============================[0m
+cocotb_top.py::test_run[3-10] 
+cocotb_top.py::test_run[5-40] 
+cocotb_top.py::test_run[3-40] 
+cocotb_top.py::test_run[5-10] 
+[gw0] [32mPASSED[0m cocotb_top.py::test_run[3-10] 
+cocotb_top.py::test_run[3-30] 
+[gw1] [32mPASSED[0m cocotb_top.py::test_run[3-40] 
+cocotb_top.py::test_run[3-80] 
+[gw2] [32mPASSED[0m cocotb_top.py::test_run[5-10] 
+cocotb_top.py::test_run[5-30] 
+[gw3] [32mPASSED[0m cocotb_top.py::test_run[5-40] 
+cocotb_top.py::test_run[5-80] 
+[gw0] [32mPASSED[0m cocotb_top.py::test_run[3-30] 
+[gw1] [32mPASSED[0m cocotb_top.py::test_run[3-80] 
+[gw3] [32mPASSED[0m cocotb_top.py::test_run[5-80] 
+[gw2] [32mPASSED[0m cocotb_top.py::test_run[5-30] 
+
+[32m============================== [32m[1m8 passed[0m[32m in 19.83s[0m[32m ==============================[0m
