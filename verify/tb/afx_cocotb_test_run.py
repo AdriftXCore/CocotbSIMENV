@@ -199,7 +199,7 @@ gtk:
             waves=waves
         )
 
-def print_pass():
+def print_doh_pass():
     print('\033[92m')
     print('PPPPPPPPPPPPPPPPP        AAA                 SSSSSSSSSSSSSSS    SSSSSSSSSSSSSSS ')
     print('P::::::::::::::::P      A:::A              SS:::::::::::::::S SS:::::::::::::::S')
@@ -219,7 +219,7 @@ def print_pass():
     print('PPPPPPPPPPAAAAAAA                   AAAAAAASSSSSSSSSSSSSSS    SSSSSSSSSSSSSSS   ')
     print('\033[0m')
 
-def print_fail():
+def print_doh_fail():
     print('\033[31m')
     print('FFFFFFFFFFFFFFFFFFFFFF      AAA               IIIIIIIIII     LLLLLLLLLLL             ')
     print('F::::::::::::::::::::F     A:::A              I::::::::I     L:::::::::L             ')
@@ -239,11 +239,19 @@ def print_fail():
     print('FFFFFFFFFFF  AAAAAAA                   AAAAAAAIIIIIIIIII     LLLLLLLLLLLLLLLLLLLLLLLL')
     print('\033[0m')
 
-
-
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
+def print_letters_pass():
+    print('\033[92m')
+    print('PPPPPP    AAA    SSSSS   SSSSS ') 
+    print('PP   PP  AAAAA  SS      SS     ') 
+    print('PPPPPP  AA   AA  SSSSS   SSSSS ') 
+    print('PP      AAAAAAA      SS      SS') 
+    print('PP      AA   AA  SSSSS   SSSSS ')    
+    print('\033[0m')
+def print_letters_fail():
+    print('\033[31m')
+    print("FFFFFFF   AAA   IIIII LL     ") 
+    print("FF       AAAAA   III  LL     ") 
+    print("FFFF    AA   AA  III  LL     ") 
+    print("FF      AAAAAAA  III  LL     ") 
+    print("FF      AA   AA IIIII LLLLLLL") 
+    print('\033[0m')

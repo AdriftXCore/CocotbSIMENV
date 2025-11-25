@@ -69,7 +69,7 @@ async def dff_simple_test(dut):
     # Check the final input on the next clock
     await RisingEdge(dut.clk)  # wait for falling edge/"negedge"
     assert dut.q.value == expected_val, "output q was incorrect on the last cycle"
-    print_pass()
+    print_letters_pass()
 ################################################################### RUN TEST ###################################################################
 import os
 import pytest
