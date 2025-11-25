@@ -199,4 +199,51 @@ gtk:
             waves=waves
         )
 
+def print_pass():
+    print('\033[92m')
+    print('PPPPPPPPPPPPPPPPP        AAA                 SSSSSSSSSSSSSSS    SSSSSSSSSSSSSSS ')
+    print('P::::::::::::::::P      A:::A              SS:::::::::::::::S SS:::::::::::::::S')
+    print('P::::::PPPPPP:::::P    A:::::A            S:::::SSSSSS::::::SS:::::SSSSSS::::::S')
+    print('PP:::::P     P:::::P  A:::::::A           S:::::S     SSSSSSSS:::::S     SSSSSSS')
+    print('  P::::P     P:::::P A:::::::::A          S:::::S            S:::::S            ')
+    print('  P::::P     P:::::PA:::::A:::::A         S:::::S            S:::::S            ')
+    print('  P::::PPPPPP:::::PA:::::A A:::::A         S::::SSSS          S::::SSSS         ')
+    print('  P:::::::::::::PPA:::::A   A:::::A         SS::::::SSSSS      SS::::::SSSSS    ')
+    print('  P::::PPPPPPPPP A:::::A     A:::::A          SSS::::::::SS      SSS::::::::SS  ')
+    print('  P::::P        A:::::AAAAAAAAA:::::A            SSSSSS::::S        SSSSSS::::S ')
+    print('  P::::P       A:::::::::::::::::::::A                S:::::S            S:::::S')
+    print('  P::::P      A:::::AAAAAAAAAAAAA:::::A               S:::::S            S:::::S')
+    print('PP::::::PP   A:::::A             A:::::A  SSSSSSS     S:::::SSSSSSSS     S:::::S')
+    print('P::::::::P  A:::::A               A:::::A S::::::SSSSSS:::::SS::::::SSSSSS:::::S')
+    print('P::::::::P A:::::A                 A:::::AS:::::::::::::::SS S:::::::::::::::SS ')
+    print('PPPPPPPPPPAAAAAAA                   AAAAAAASSSSSSSSSSSSSSS    SSSSSSSSSSSSSSS   ')
+    print('\033[0m')
 
+def print_fail():
+    print('\033[31m')
+    print('FFFFFFFFFFFFFFFFFFFFFF      AAA               IIIIIIIIII     LLLLLLLLLLL             ')
+    print('F::::::::::::::::::::F     A:::A              I::::::::I     L:::::::::L             ')
+    print('F::::::::::::::::::::F    A:::::A             I::::::::I     L:::::::::L             ')
+    print('FF::::::FFFFFFFFF::::F   A:::::::A            II::::::II     LL:::::::LL             ')
+    print('  F:::::F       FFFFFF  A:::::::::A             I::::I         L:::::L               ')
+    print('  F:::::F              A:::::A:::::A            I::::I         L:::::L               ')
+    print('  F::::::FFFFFFFFFF   A:::::A A:::::A           I::::I         L:::::L               ')
+    print('  F:::::::::::::::F  A:::::A   A:::::A          I::::I         L:::::L               ')
+    print('  F:::::::::::::::F A:::::A     A:::::A         I::::I         L:::::L               ')
+    print('  F::::::FFFFFFFFFFA:::::AAAAAAAAA:::::A        I::::I         L:::::L               ')
+    print('  F:::::F         A:::::::::::::::::::::A       I::::I         L:::::L               ')
+    print('  F:::::F        A:::::AAAAAAAAAAAAA:::::A      I::::I         L:::::L         LLLLLL')
+    print('FF:::::::FF     A:::::A             A:::::A   II::::::II     LL:::::::LLLLLLLLL:::::L')
+    print('F::::::::FF    A:::::A               A:::::A  I::::::::I     L::::::::::::::::::::::L')
+    print('F::::::::FF   A:::::A                 A:::::A I::::::::I     L::::::::::::::::::::::L')
+    print('FFFFFFFFFFF  AAAAAAA                   AAAAAAAIIIIIIIIII     LLLLLLLLLLLLLLLLLLLLLLLL')
+    print('\033[0m')
+
+
+
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                

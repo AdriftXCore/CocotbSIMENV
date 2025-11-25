@@ -6,7 +6,7 @@ import random
 
 import cocotb
 from cocotb.triggers import RisingEdge, Timer
-from afx_cocotb_test_run import afx_test_run
+from afx_cocotb_test_run import *
 
 async def generate_clock(dut, cycle, u, n):
     """Generate clock pulses."""
@@ -69,7 +69,7 @@ async def dff_simple_test(dut):
     # Check the final input on the next clock
     await RisingEdge(dut.clk)  # wait for falling edge/"negedge"
     assert dut.q.value == expected_val, "output q was incorrect on the last cycle"
-
+    print_pass()
 ################################################################### RUN TEST ###################################################################
 import os
 import pytest
